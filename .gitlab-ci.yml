@@ -1,0 +1,12 @@
+before_script:
+  - docker info
+
+stages:
+  - build
+# - deploy
+
+build:
+  stage: build
+  script:
+     - docker-compose build
+
