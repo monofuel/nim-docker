@@ -3,12 +3,18 @@ before_script:
 
 stages:
   - build
+  - test
   - deploy
 
 build:
   stage: build
   script:
      - docker build --no-cache -t monofuel/nim:amd64 .
+
+test:
+  stage: test
+  script:
+    - docker run monofuel/nim:amd64 /opt/Nim/koch tests
 
 deploy:
   stage: deploy
