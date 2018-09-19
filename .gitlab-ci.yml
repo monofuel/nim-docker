@@ -3,10 +3,14 @@ before_script:
 
 stages:
   - build
-# - deploy
+  - deploy
 
 build:
   stage: build
   script:
-     - docker-compose build
+     - docker build --no-cache -t monofuel/nim:amd64 .
 
+deploy:
+  stage: deploy
+  script:
+    - docker push monofuel/nim:amd64

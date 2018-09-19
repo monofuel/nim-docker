@@ -11,5 +11,5 @@ build-arm32v6:
 
 .PHONY: manifest
 manifest:
-	docker manifest create monofuel/nim:latest monofuel/nim:amd64 monofuel/nim:arm32v6
+	docker manifest create --amend monofuel/nim:latest monofuel/nim:amd64 monofuel/nim:arm32v6
 	docker manifest push monofuel/nim:latest
