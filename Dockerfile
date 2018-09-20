@@ -1,6 +1,6 @@
 FROM alpine
 
-RUN apk --no-cache git build-base
+RUN apk --no-cache git build-base gc
 
 WORKDIR /opt
 RUN git clone https://github.com/nim-lang/Nim.git --depth 1
