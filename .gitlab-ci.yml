@@ -14,7 +14,7 @@ build:
 test:
   stage: test
   script:
-    - docker run monofuel/nim:amd64 /opt/Nim/koch tests
+    - docker run monofuel/nim:amd64 cd /opt/Nim && ./koch tests
 
 deploy:
   stage: deploy
