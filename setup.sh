@@ -2,9 +2,10 @@
 
 git clone https://github.com/nim-lang/Nim.git --depth 1 /opt/Nim
 
-sh /opt/Nim/build_all.sh 
-/opt/Nim/bin/nim c koch
-/opt/Nim/koch boot -d:release
-/opt/Nim/koch tools
+cd /opt/Nim
+sh ./build_all.sh 
+./bin/nim c koch
+./koch boot -d:release
+./koch tools
 
 # TODO clean up sources
