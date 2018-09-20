@@ -14,7 +14,7 @@ build:
 test:
   stage: test
   script:
-    - echo skipping tests (need more deps and junk)
+    - echo 'skipping tests (need more deps and junk)'
     #- docker run monofuel/nim:amd64 cd /opt/Nim && ./koch tests
 
 deploy:
