@@ -30,7 +30,8 @@ build:
   before_script:
     - yum install -y yum-utils
     - yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
-    - yum install -y docker packer make
+    - dnf config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+    - yum install -y docker-ce docker-ce-cli packer make
   script:
     - echo "$DOCKER-TOKEN" | docker login -u monofuel --password-stdin
     # - make buildx # TODO move to packer
