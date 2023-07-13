@@ -1,5 +1,13 @@
 # Docker Nim
 
+```
+monofuel/nim:latest (rocky9)
+monofuel/nim:rocky (rocky9)
+monofuel/nim:rocky9
+monofuel/nim:rocky8
+monfouel/nim:alpine
+```
+
 https://gitlab.com/mono-homelab/nim-docker
 
 - nim builds done nightly, fresh off the devel branch
