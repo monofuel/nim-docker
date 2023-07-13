@@ -1,6 +1,6 @@
 #!/bin/sh
 
-git clone https://github.com/nim-lang/Nim.git --depth 1 /opt/Nim
+git clone --branch devel https://github.com/nim-lang/Nim.git --depth 1 /opt/Nim
 
 cd /opt/Nim
 sh ./build_all.sh 
