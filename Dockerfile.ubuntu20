@@ -1,6 +1,6 @@
 FROM ubuntu:20.04
 
-RUN apt update && apt install -y git gcc gcc-c++ make which && apt clean
+RUN apt update && apt install -y git gcc g++ make && apt clean
 
 # install nim and perform cleanup in one layer
 COPY ./setup.sh /root/
