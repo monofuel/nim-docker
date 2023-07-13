@@ -2,4 +2,9 @@
 
 https://gitlab.com/mono-homelab/nim-docker
 
-- docker images for nimlang built fresh from devel from amd64/alpine and arm32v6/alpine
+- nim builds done nightly, fresh off the devel branch
+- docker images for nimlang for amd64 & arm64
+- distros:
+  - alpine
+  - rocky linux 8
+  - rocky linux 9
