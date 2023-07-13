@@ -9,6 +9,6 @@ sh ./build_all.sh
 ./koch tools
 
 mkdir -p /root/.nimble/bin
-cp -r /opt/Nim/bin/* /root/.nimble/bin/
 
-rm -rf /opt/Nim
+# cp -r /opt/Nim/bin/* /root/.nimble/bin/
+# rm -rf /opt/Nim
