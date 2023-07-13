@@ -18,6 +18,7 @@ source "docker" "rockylinux9-amd64" {
     image  = "rockylinux:9"
     commit = true
     platform = "linux/amd64"
+
 }
 
 source "docker" "rockylinux9-arm64" {
@@ -30,7 +31,8 @@ build {
     name = "dev-builder"
     sources = [
         "source.docker.rockylinux8-amd64",
-        "source.docker.rockylinux9-amd64"
+        "source.docker.rockylinux9-amd64",
+        "source.docker.rockylinux9-arm64"
     ]
     provisioner "ansible" {
       playbook_file = "playbooks/build-nim.yml"
@@ -41,6 +43,7 @@ build {
       ]
     }
 
+    # TODO how to add /root/.nimble/bin to path?
     post-processor "docker-tag" {
         repository = "monofuel/nim"
         tags       = ["latest", "rocky9", "rocky"]

@@ -20,4 +20,20 @@
       shell: sh ./build_all.sh
       args:
         chdir: /opt/Nim
-# TODO clean up sources after building compiler
+    - name: build koch
+      shell: ./bin/nim c koch
+      args:
+        chdir: /opt/Nim
+    - name: koch boot
+      shell: ./koch boot -d:release
+      args:
+        chdir: /opt/Nim
+    - name: koch tools
+      shell: ./koch tools
+      args:
+        chdir: /opt/Nim
+    - name: delete sources
+      file:
+        path: /opt/Nim
+        state: absent
+        force: yes

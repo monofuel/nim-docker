@@ -16,7 +16,7 @@
 
 .PHONY: buildx
 buildx:
-	docker buildx build --platform linux/amd64,linux/arm64 -t monofuel/nim:alpine --push .
+	docker buildx build --platform linux/amd64,linux/arm64 -t monofuel/nim:alpine .
 #	docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v6 -t monofuel/nim:latest --push .
 
 
