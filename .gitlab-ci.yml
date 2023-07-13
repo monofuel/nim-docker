@@ -18,11 +18,13 @@ before_script:
   - until docker info; do sleep 1; done
 
 stages:
-  - build
+  - build-rocky
+  - build-alpine
+  - build-debian
   # - test
   # - deploy
 
-build:
+build-rocky:
   image: rockylinux:9
   stage: build
   tags:
@@ -37,6 +39,38 @@ build:
     - docker context create gitlab
     - docker buildx create --name builder --use gitlab --bootstrap
     - make build-rocky9
+
+build-alpine:
+  image: rockylinux:9
+  stage: build
+  tags:
+    - amd64
+  before_script:
+    - yum install -y yum-utils
+    - yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
+    - dnf config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+    - yum install -y docker-ce docker-ce-cli containerd.io packer make git
+  script:
+    - docker login -u monofuel -p $DOCKER_TOKEN
+    - docker context create gitlab
+    - docker buildx create --name builder --use gitlab --bootstrap
+    - make build-alpine
+
+build-ubuntu:
+  image: rockylinux:9
+  stage: build
+  tags:
+    - amd64
+  before_script:
+    - yum install -y yum-utils
+    - yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
+    - dnf config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+    - yum install -y docker-ce docker-ce-cli containerd.io packer make git
+  script:
+    - docker login -u monofuel -p $DOCKER_TOKEN
+    - docker context create gitlab
+    - docker buildx create --name builder --use gitlab --bootstrap
+    - make build-ubuntu
 # TODO test
 # perhaps build image, push to gitlab registry, then pull and test, and then push to dockerhub?
 
