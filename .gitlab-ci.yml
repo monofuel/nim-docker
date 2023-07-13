@@ -33,7 +33,7 @@ build:
     - dnf config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
     - yum install -y docker-ce docker-ce-cli containerd.io packer make
   script:
-    - echo $DOCKER-TOKEN | docker login -u monofuel --password-stdin
+    - docker login -u monofuel -p $DOCKER_TOKEN
     - make build-rocky9
 # TODO test
 # perhaps build image, push to gitlab registry, then pull and test, and then push to dockerhub?
