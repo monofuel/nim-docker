@@ -21,8 +21,8 @@ build: build-alpine build-rocky8 build-rocky9 build-ubuntu20 build-ubuntu22
 build-ubuntu20:
 	docker buildx build --platform linux/amd64,linux/arm64 -t monofuel/nim:ubuntu20 -f Dockerfile.ubuntu22 --push .
 
-.PHONY: build-ubuntu20
-build-ubuntu20:
+.PHONY: build-ubuntu22
+build-ubuntu22:
 	docker buildx build --platform linux/amd64,linux/arm64 -t monofuel/nim:ubuntu22 -f Dockerfile.ubuntu22 --push .
 
 .PHONY: build-alpine
