@@ -8,7 +8,7 @@ packer {
 }
 
 source "docker" "rockylinux" {
-    image  = "rockylinux:8"
+    image  = "rockylinux:9"
     commit = true
 }
 
@@ -28,7 +28,7 @@ build {
 
     post-processor "docker-tag" {
         repository = "monofuel/nim"
-        tags       = ["rocky8"]
+        tags       = ["latest", "rocky9", "rocky"]
         only       = ["docker.rockylinux"]
     }
 }

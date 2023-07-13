@@ -19,22 +19,37 @@ before_script:
 
 stages:
   - build
-  - test
-  - deploy
+  # - test
+  # - deploy
 
 build:
+  image: rockylinux:9
   stage: build
+  tags:
+    - amd64
+  before_script:
+    - yum install -y yum-utils
+    - yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
+    - yum install -y docker packer
   script:
-    - docker build --no-cache -t monofuel/nim:amd64 .
+    - make buildx # TODO move to packer
+    - make packer-init
+    - make packer-build
+# TODO test
+# perhaps build image, push to gitlab registry, then pull and test, and then push to dockerhub?
 
-test:
-  stage: test
-  script:
-    - docker run monofuel/nim:amd64 cd /opt/Nim && ./koch tests
+# test:
+#   stage: test
+#   tags:
+#     - amd64
+#   script:
+#     - docker run monofuel/nim "bash -c 'cd /opt/Nim && ./koch tests'"
 
-deploy:
-  stage: deploy
-  script:
-    - docker push monofuel/nim:amd64
-  only:
-    - master
+# deploy:
+#   stage: deploy
+#   tags:
+#     - amd64
+#   script:
+#     - docker push monofuel/nim:amd64
+#   only:
+#     - master

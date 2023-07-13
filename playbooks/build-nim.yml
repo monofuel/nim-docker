@@ -1,9 +1,23 @@
-# git clone https://github.com/nim-lang/Nim.git --depth 1 /opt/Nim
-
-# cd /opt/Nim
-# sh ./build_all.sh
-# ./bin/nim c koch
-# ./koch boot -d:release
-# ./koch tools
-
-# TODO clean up sources
+- hosts:
+    - nim
+  tasks:
+    - name: install git
+      ansible.builtin.package:
+        name:
+          - git
+          - which
+          - make
+          - gcc
+          - gcc-c++
+        state: present
+    - name: clone nim to /opt/Nim
+      git:
+        repo: https://github.com/nim-lang/Nim.git
+        dest: /opt/Nim
+        recursive: yes
+        depth: 1
+    - name: run build_all.sh
+      shell: sh ./build_all.sh
+      args:
+        chdir: /opt/Nim
+# TODO clean up sources after building compiler
