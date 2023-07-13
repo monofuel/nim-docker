@@ -5,4 +5,4 @@ RUN apk add --no-cache git build-base gc
 # install nim and perform cleanup in one layer
 COPY ./setup.sh /root/
 RUN sh /root/setup.sh
-ENV PATH="/opt/Nim/bin:${PATH}"
+ENV PATH="/root/.nimble/bin"
