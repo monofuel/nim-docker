@@ -1,11 +1,12 @@
 # Docker Nim
 
 ```
-monofuel/nim:latest (rocky9)
-monofuel/nim:rocky (rocky9)
+monofuel/nim:latest   (rocky9)
+monofuel/nim:rocky    (rocky9)
 monofuel/nim:rocky9
 monofuel/nim:rocky8
 monofuel/nim:alpine
+monofuel/nim:ubuntu   (ubuntu 22.04 LTS)
 monofuel/nim:ubuntu22 (ubuntu 22.04 LTS)
 monofuel/nim:ubuntu20 (ubuntu 20.04 LTS)
 ```
