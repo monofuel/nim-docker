@@ -15,20 +15,28 @@
 # 	docker manifest push monofuel/nim:latest
 
 .PHONY: build
-build: build-alpine build-rocky8 build-rocky9
+build: build-alpine build-rocky8 build-rocky9 build-ubuntu20 build-ubuntu22
+
+.PHONY: build-ubuntu20
+build-ubuntu20:
+	docker buildx build --platform linux/amd64,linux/arm64 -t monofuel/nim:ubuntu20 -f Dockerfile.ubuntu22 --push .
+
+.PHONY: build-ubuntu20
+build-ubuntu20:
+	docker buildx build --platform linux/amd64,linux/arm64 -t monofuel/nim:ubuntu22 -f Dockerfile.ubuntu22 --push .
 
 .PHONY: build-alpine
 build-alpine:
-	docker buildx build --platform linux/amd64,linux/arm64 -t monofuel/nim:alpine --push .
+	docker buildx build --platform linux/amd64,linux/arm64 -t monofuel/nim:alpine -f Dockerfile.alpine --push .
 #	docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v6 -t monofuel/nim:latest --push .
 
 .PHONY: build-rocky8
 build-rocky8:
-	docker buildx build --platform linux/amd64,linux/arm64 -t monofuel/nim:rocky8 --push .
+	docker buildx build --platform linux/amd64,linux/arm64 -t monofuel/nim:rocky8 -f Dockerfile.rocky8 -push .
 
 .PHONY: build-rocky9
 build-rocky9:
-	docker buildx build --platform linux/amd64,linux/arm64 -t monofuel/nim:rocky9 -t monofuel/nim:latest -t monofuel/nim:rocky --push .
+	docker buildx build --platform linux/amd64,linux/arm64 -t monofuel/nim:rocky9 -t monofuel/nim:latest -t monofuel/nim:rocky -f Dockerfile.rocky9 --push .
 
 # .PHONY: packer-init
 # packer-init:
