@@ -1,3 +1,19 @@
+image: docker:git
+
+# https://docs.gitlab.com/ee/ci/docker/using_docker_build.html#docker-in-docker-with-tls-enabled-in-kubernetes
+
+variables:
+  GIT_SUBMODULE_STRATEGY: recursive
+  CONTAINER_REGISTRY: registry.gitlab.com/$CI_PROJECT_PATH
+  DOCKER_DRIVER: overlay2
+  DOCKER_TLS_CERTDIR: "/certs"
+  DOCKER_HOST: tcp://docker:2376
+  DOCKER_TLS_VERIFY: 1
+  DOCKER_CERT_PATH: "$DOCKER_TLS_CERTDIR/client"
+
+services:
+  - docker:20.10.16-dind
+
 before_script:
   - docker info
 
@@ -9,17 +25,16 @@ stages:
 build:
   stage: build
   script:
-     - docker build --no-cache -t monofuel/nim:amd64 .
+    - docker build --no-cache -t monofuel/nim:amd64 .
 
 test:
   stage: test
   script:
-    - echo 'skipping tests (need more deps and junk)'
-    #- docker run monofuel/nim:amd64 cd /opt/Nim && ./koch tests
+    - docker run monofuel/nim:amd64 cd /opt/Nim && ./koch tests
 
 deploy:
   stage: deploy
   script:
     - docker push monofuel/nim:amd64
   only:
-  - master
+    - master
