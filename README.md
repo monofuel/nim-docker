@@ -10,6 +10,8 @@ monfouel/nim:alpine
 
 https://gitlab.com/mono-homelab/nim-docker
 
+![workflow](https://gitlab.com/mono-homelab/nim-docker/badges/master/pipeline.svg)
+
 - nim builds done nightly, fresh off the devel branch
 - docker images for nimlang for amd64 & arm64
 - distros:
