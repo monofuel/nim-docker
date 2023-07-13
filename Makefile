@@ -14,6 +14,9 @@
 # 	docker manifest create --amend monofuel/nim:latest monofuel/nim:amd64 monofuel/nim:arm32v6
 # 	docker manifest push monofuel/nim:latest
 
+.PHONY: build
+build: build-alpine build-rocky8 build-rocky9
+
 .PHONY: build-alpine
 build-alpine:
 	docker buildx build --platform linux/amd64,linux/arm64 -t monofuel/nim:alpine --push .
