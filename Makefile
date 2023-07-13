@@ -22,8 +22,8 @@ buildx:
 
 .PHONY: packer-init
 packer-init:
-	packer init packer/*.pkr.hcl
+	packer init packer/rocky.pkr.hcl
 
 .PHONY: packer-build
 packer-build:
-	packer build packer/*.pkr.hcl
+	packer build packer/rocky.pkr.hcl
