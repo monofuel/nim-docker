@@ -18,9 +18,7 @@ before_script:
   - until docker info; do sleep 1; done
 
 stages:
-  - build-rocky
-  - build-alpine
-  - build-debian
+  - build
   # - test
   # - deploy
 
@@ -39,6 +37,7 @@ build-rocky:
     - docker context create gitlab
     - docker buildx create --name builder --use gitlab --bootstrap
     - make build-rocky9
+    - make build-rocky8
 
 build-alpine:
   image: rockylinux:9
@@ -70,7 +69,8 @@ build-ubuntu:
     - docker login -u monofuel -p $DOCKER_TOKEN
     - docker context create gitlab
     - docker buildx create --name builder --use gitlab --bootstrap
-    - make build-ubuntu
+    - make build-ubuntu22
+    - make build-ubuntu20
 # TODO test
 # perhaps build image, push to gitlab registry, then pull and test, and then push to dockerhub?
 
