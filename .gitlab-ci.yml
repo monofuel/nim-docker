@@ -34,6 +34,7 @@ build:
     - yum install -y docker-ce docker-ce-cli containerd.io packer make git
   script:
     - docker login -u monofuel -p $DOCKER_TOKEN
+    - docker context create gitlab
     - docker buildx create --use
     - make build-rocky9
 # TODO test
