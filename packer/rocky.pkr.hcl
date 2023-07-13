@@ -44,17 +44,21 @@ build {
     }
 
     # TODO how to add /root/.nimble/bin to path?
+    # TODO how to efficiently make manifests?
     post-processor "docker-tag" {
         repository = "monofuel/nim"
-        tags       = ["latest", "rocky9", "rocky"]
+        tags       = ["rocky9-amd64"]
         only       = [
-          "docker.rockylinux9-amd64",
-          "docker.rockylinux9-arm64"
+          "docker.rockylinux9-amd64"
         ]
     }
+    
     post-processor "docker-tag" {
         repository = "monofuel/nim"
-        tags       = ["rocky8"]
+        tags       = ["rocky8-amd64"]
         only       = ["docker.rockylinux8-amd64"]
+    }
+    post-processor "manifest" {
+      output = "manifest.json
     }
 }

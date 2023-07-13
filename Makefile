@@ -14,16 +14,23 @@
 # 	docker manifest create --amend monofuel/nim:latest monofuel/nim:amd64 monofuel/nim:arm32v6
 # 	docker manifest push monofuel/nim:latest
 
-.PHONY: buildx
-buildx:
-	docker buildx build --platform linux/amd64,linux/arm64 -t monofuel/nim:alpine .
+.PHONY: build-alpine
+build-alpine:
+	docker buildx build --platform linux/amd64,linux/arm64 -t monofuel/nim:alpine --push .
 #	docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v6 -t monofuel/nim:latest --push .
 
+.PHONY: build-rocky8
+build-rocky8:
+	docker buildx build --platform linux/amd64,linux/arm64 -t monofuel/nim:rocky8 --push .
 
-.PHONY: packer-init
-packer-init:
-	packer init packer/rocky.pkr.hcl
+.PHONY: build-rocky9
+build-rocky9:
+	docker buildx build --platform linux/amd64,linux/arm64 -t monofuel/nim:rocky9 -t monofuel/nim:latest -t monofuel/nim:rocky --push .
 
-.PHONY: packer-build
-packer-build:
-	packer build packer/rocky.pkr.hcl
+# .PHONY: packer-init
+# packer-init:
+# 	packer init packer/rocky.pkr.hcl
+
+# .PHONY: packer-build
+# packer-build:
+# 	packer build packer/rocky.pkr.hcl

@@ -34,9 +34,7 @@ build:
     - yum install -y docker-ce docker-ce-cli containerd.io packer make
   script:
     - echo "$DOCKER-TOKEN" | docker login -u monofuel --password-stdin
-    # - make buildx # TODO move to packer
-    - make packer-init
-    - make packer-build
+    - make build-rocky9
 # TODO test
 # perhaps build image, push to gitlab registry, then pull and test, and then push to dockerhub?
 
