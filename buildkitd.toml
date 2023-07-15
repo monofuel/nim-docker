@@ -1,0 +1,4 @@
+# /etc/buildkitd.toml
+# limit concurrent builds to 1 to be easier on the CI host
+[worker.oci]
+  max-parallelism = 1
