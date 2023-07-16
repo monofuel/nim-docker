@@ -36,6 +36,8 @@ deploy-rocky:
   tags:
     - amd64
   script:
+    - make pull-rocky9
+    - make pull-rocky8
     - docker login -u monofuel -p $DOCKER_TOKEN
     - docker context create gitlab
     - docker buildx create --name builder --use gitlab --bootstrap --config ./buildkitd.toml
@@ -48,6 +50,7 @@ deploy-alpine:
   tags:
     - amd64
   script:
+    - make pull-alpine
     - docker login -u monofuel -p $DOCKER_TOKEN
     - docker context create gitlab
     - docker buildx create --name builder --use gitlab --bootstrap --config ./buildkitd.toml
@@ -59,6 +62,8 @@ deploy-ubuntu:
   tags:
     - amd64
   script:
+    - make pull-ubuntu22
+    - make pull-ubuntu20
     - docker login -u monofuel -p $DOCKER_TOKEN
     - docker context create gitlab
     - docker buildx create --name builder --use gitlab --bootstrap --config ./buildkitd.toml
