@@ -28,6 +28,7 @@ build-builder:
   tags:
     - amd64
   script:
+    - make pull-builder
     - make build-builder
 
 deploy-rocky:

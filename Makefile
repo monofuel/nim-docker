@@ -37,6 +37,10 @@ pull-ubuntu20:
 pull-ubuntu22:
 	docker pull registry.gitlab.com/mono-homelab/nim-docker:ubuntu22
 
+.PHONY: pull-builder
+pull-builder:
+	docker pull registry.gitlab.com/mono-homelab/nim-docker:builder
+
 .PHONY: build
 build: build-alpine build-rocky8 build-rocky9 build-ubuntu20 build-ubuntu22
 
