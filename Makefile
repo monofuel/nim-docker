@@ -14,6 +14,8 @@
 # 	docker manifest create --amend monofuel/nim:latest monofuel/nim:amd64 monofuel/nim:arm32v6
 # 	docker manifest push monofuel/nim:latest
 
+
+
 .PHONY: build
 build: build-alpine build-rocky8 build-rocky9 build-ubuntu20 build-ubuntu22
 
@@ -37,6 +39,11 @@ build-rocky8:
 .PHONY: build-rocky9
 build-rocky9:
 	docker buildx build --platform linux/amd64,linux/arm64 -t monofuel/nim:rocky9 -t monofuel/nim:latest -t monofuel/nim:rocky -f Dockerfile.rocky9 --push .
+
+.PHONY: build-builder
+build-builder:
+	docker buildx build --platform linux/amd64 -f Dockerfile.builder --push . \
+	  -t registry.gitlab.com/mono-homelab/nim-docker:builder 
 
 # .PHONY: packer-init
 # packer-init:
