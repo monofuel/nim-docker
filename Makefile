@@ -32,7 +32,7 @@ build-alpine:
 
 .PHONY: build-rocky8
 build-rocky8:
-	docker buildx build --platform linux/amd64,linux/arm64 -t monofuel/nim:rocky8 -f Dockerfile.rocky8 -push .
+	docker buildx build --platform linux/amd64,linux/arm64 -t monofuel/nim:rocky8 -f Dockerfile.rocky8 --push .
 
 .PHONY: build-rocky9
 build-rocky9:
