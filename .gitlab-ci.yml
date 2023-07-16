@@ -28,6 +28,7 @@ build-builder:
   tags:
     - amd64
   script:
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN ${CONTAINER_REGISTRY}
     - make pull-builder
     - make build-builder
 
@@ -37,6 +38,7 @@ deploy-rocky:
   tags:
     - amd64
   script:
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN ${CONTAINER_REGISTRY}
     - make pull-rocky9
     - make pull-rocky8
     - docker login -u monofuel -p $DOCKER_TOKEN
@@ -51,6 +53,7 @@ deploy-alpine:
   tags:
     - amd64
   script:
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN ${CONTAINER_REGISTRY}
     - make pull-alpine
     - docker login -u monofuel -p $DOCKER_TOKEN
     - docker context create gitlab
@@ -63,6 +66,7 @@ deploy-ubuntu:
   tags:
     - amd64
   script:
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN ${CONTAINER_REGISTRY}
     - make pull-ubuntu22
     - make pull-ubuntu20
     - docker login -u monofuel -p $DOCKER_TOKEN
